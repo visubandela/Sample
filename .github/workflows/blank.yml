@@ -29,10 +29,11 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a Multi Line Script 
-        run: | echo add other action to build 
-               echo test and deploy your project 
-
-     build-api:
+        run: | 
+          echo add other action to build 
+          echo test and deploy your project 
+          
+    build-api:
        runs-on: windows-latest
        steps:
          -run: echo "BUilding API"
