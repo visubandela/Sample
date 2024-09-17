@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: new 
 
 # Controls when the workflow will run
@@ -25,33 +23,33 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
+      # Runs a single command using the runner's shell
       - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a Multi Line Script 
+        run: echo "Hello, world!"
+      
+      - name: Run a multi-line script
         run: | 
-          echo add other action to build 
-          echo test and deploy your project 
-          
-    build-api:
-       runs-on: windows-latest
-       steps:
-         -run: echo "BUilding API"
+          echo "Add other actions to build"
+          echo "Test and deploy your project"
 
-    build-db:
-      needs: build-app  
-      runs-on: windows-latest
-      steps:
-        -run: echo " Using Windows"
+  build-api:
+    runs-on: windows-latest
+    steps:
+      - run: echo "Building API"
 
-    package:
-      needs: [build-app, build-db]
-      runs-on: windows-latest
-      steps:
-         -run: echo "Using Windows"
+  build-db:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - run: echo "Using Windows for database setup"
 
-      # Runs a set of commands using the runners shell
+  package:
+    needs: [build, build-db]
+    runs-on: windows-latest
+    steps:
+      - run: echo "Packaging application"
+      
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Add other actions to package,"
+          echo "test, and deploy your project."
