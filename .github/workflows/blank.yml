@@ -44,7 +44,7 @@ jobs:
       steps:
         -run: echo " Using Windows"
 
-     package:
+    package:
       needs: [build-app, build-db]
       runs-on: windows-latest
       steps:
